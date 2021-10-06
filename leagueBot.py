@@ -4,7 +4,7 @@ import re
 from discord.ext import commands
 from bs4 import BeautifulSoup
 
-token = # not for public
+token = "NzY2NTQ3MDE4NTk1NDM0NTM3.X4k8ig.xglUz2wyGQcSLHfyHWzLlcGs3Yk"
 
 client = discord.Client()
 
@@ -30,9 +30,9 @@ async def on_message(message):
         index = address.index("patch")
         season = address[index + 6:index + 8]
 
-        if index == 55:
+        if len(address) == 72:
             version = address[index + 9:index + 10]
-        elif index == 56:
+        elif len(address) == 73:
             version = address[index + 9:index + 11]
 
         patch = discord.Embed(
@@ -116,7 +116,7 @@ async def on_message(message):
         name = name[9:]
         name = name.capitalize()
 
-        url = "https://u.gg/lol/champions/"+ name + "/build?rank=diamond_plus"
+        url = "https://u.gg/lol/champions/"+ name + "/build?rank=master_plus"
         res = requests.get(url)
         res.raise_for_status()
         soup = BeautifulSoup(res.text, "html.parser")
