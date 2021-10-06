@@ -4,7 +4,7 @@ import re
 from discord.ext import commands
 from bs4 import BeautifulSoup
 
-token = # not for public
+token =  # not for public
 
 client = discord.Client()
 
@@ -29,6 +29,7 @@ async def on_message(message):
 
         index = address.index("patch")
         season = address[index + 6:index + 8]
+        imageLink = soup.find('img')
 
         if len(address) == 72:
             version = address[index + 9:index + 10]
@@ -41,7 +42,7 @@ async def on_message(message):
             colour = discord.Colour.teal()
         )
 
-        patch.set_image(url="https://images.prismic.io/play-vs/13d11d702dbad5dca33f0e22abf4b3978381b5e7_league-of-legends-hero-splash.jpg?auto=compress,format")
+        patch.set_image(url=imageLink.get('src'))
         
         await message.channel.send(embed=patch)
 
