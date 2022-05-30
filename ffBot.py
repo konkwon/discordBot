@@ -1,5 +1,6 @@
 import os
 import discord
+import supportedConents
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,15 +14,16 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.content.startswith('a'):
+    if message.author.bot: # no infinite loops from bot message
+        return
+
+    if message.content.startswith("!raid"):
+        reply = str(message.content)[6:]
         channel = message.channel
-        await channel.send('Say hello!')
-
-        def check(m):
-            return m.content == 'hello' and m.channel == channel
-
-        msg = await client.wait_for('message', check=check)
-        await channel.send('Hello {.author}!'.format(msg))
+        if not reply: # no raid specified / empty after !raid
+            await channel.send("Type raid name after !raid. e.g. !raid p4s")
+        else:
+            await channel.send(supportedConents.encounters[reply])
 
 
 
