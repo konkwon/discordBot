@@ -17,6 +17,10 @@ async def on_message(message):
     if message.author.bot: # no infinite loops from bot message
         return
 
+    if message.content.startswith("!help"):
+        channel = message.channel
+        await channel.send("List of commands you can use: \n !raid \n !character")
+
     if message.content.startswith("!raid"):
         reply = str(message.content)[6:]
         channel = message.channel
