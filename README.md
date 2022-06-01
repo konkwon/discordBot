@@ -1,2 +1,2 @@
 # discordBot
-noncommercial discord bot pulling data from ffxiv wiki / saltedxiv using beautiful soup
+noncommercial Discord bot using XIVAPI and BeautifulSoup to obtain FFXIV information and display on Discord channels
