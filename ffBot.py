@@ -4,9 +4,11 @@ import asyncio
 import aiohttp
 import pyxivapi
 import supportedConents
+import requests
 from discord.ext import commands
 from discord_components import DiscordComponents, ComponentsBot, Button, SelectOption, Select
 from dotenv import load_dotenv
+from bs4 import BeautifulSoup
 
 load_dotenv()
 # keys encrypted using git crypt
@@ -22,12 +24,12 @@ async def on_ready():
 
 @client.command()
 async def help(ctx):
-    await ctx.send("List of commands you can use: \n!raid [encounter name e.g. zodiark]\n!char [Character Name Server e.g. Ravi Lavi Leviathan]")
+    await ctx.send("List of commands you can use: \n!r [encounter name e.g. zodiark]\n!c [Character Name Server e.g. Ravi Lavi Leviathan]")
 
 @client.command()
-async def raid(ctx, *arg):
+async def r(ctx, *arg):
     if not arg: # no raid specified / empty after !raid
-        await ctx.send("Type raid name after !raid.\ne.g. !raid p4s")
+        await ctx.send("Type raid name after !r.\ne.g. !raid p4s")
     elif arg[0] in supportedConents.encounters:
         await ctx.send(supportedConents.encounters[arg[0]])
     else:
@@ -77,7 +79,7 @@ async def c(ctx, *arg):
             page2 = discord.Embed(title = (char['Results'][0]['Name']), description = (char['Results'][0]['Server']), color=0x336666)
             page2.set_thumbnail(url = (char['Results'][0]['Avatar']))
             page2.add_field(
-                            name="test", 
+                            name="Gatherer / Crafter", 
                             value="<:crp:981414565755637840> " + " <:bsm:981414520872394752> " + " <:arm:981414511326167091> " + " <:gsm:981414735322968095> " + '\n' +
                                     str(jobLevel[8]).ljust(4, "") + str(jobLevel[9]).ljust(4, "") + str(jobLevel[10]).ljust(4, "") + str(jobLevel[11]).ljust(4, "") + '\n' +
                                     "<:ltw:981414742700732438> " + " <:wvr:981414759356334091> " + " <:alc:981414453792894987> " + " <:cul:981414719128748092> " + '\n' +
@@ -112,6 +114,43 @@ async def c(ctx, *arg):
     else:
         await ctx.send("error")
 
+@client.command()
+async def w(ctx, *arg):
+    if not arg:
+        await ctx.send("Type the area to show the weather.\ne.g. !w upper la noscea")
+    else:
+        if len(arg) > 1:
+            area = '-'.join(arg)
+        else:
+            area = arg[0]
+
+        hdr = { 
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 
+            'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 
+            'Accept-Language' : 'en-US,en;q=0.5',
+            'Accept-Encoding' : 'gzip', 
+            'DNT' : '1',
+            'Connection' : 'close'
+            }
+
+        bsResponse = requests.get("https://eorzea-weather.info/en/zones/" + area, headers=hdr)
+        soup = BeautifulSoup(bsResponse.content, 'html.parser')
+
+        # print(soup)
+        if "404 Not Found" in soup.text:
+            await ctx.send("Can not find the area. Check the input.")
+        else:
+            print(soup)
+            current = soup.find("td", {"class":"MuiTableCell-root MuiTableCell-body"})
+            # weather = current.find("p", {"class":"MuiTypography-root MuiTypography-body1 MuiTypography-colorInherit"}).text.strip()
+            print(current)
+        
+
+
+        
+
+
+        await ctx.send(arg[0])
 
 
 client.run(DISC_TOKEN)
