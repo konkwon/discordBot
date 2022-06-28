@@ -1,1 +1,1 @@
-web: python3 ffBot.py
+worker: python3 ffBot.py
