@@ -4,7 +4,7 @@ encounters = {
     "innocence":"https://saltedxiv.com/encounters/innocence",
     "hades":"https://saltedxiv.com/encounters/hades",
     "memoria":"https://saltedxiv.com/encounters/mem-ex",
-    "sos":"https://saltedxiv.com/encounters/sos-ex",
+    ("wolex","sos","sosex"):"https://saltedxiv.com/encounters/sos-ex",
     "ruby":"https://saltedxiv.com/encounters/ruby-ex",
     "emerald":"https://saltedxiv.com/encounters/castrum-ex",
     "diamond":"https://saltedxiv.com/encounters/diamond-ex",
@@ -23,8 +23,8 @@ encounters = {
 
     # Endwalker
     "zodiark": "https://saltedxiv.com/encounters/zodiark-ex",
-    "hydaelyn": "https://saltedxiv.com/encounters/hydaelyn-ex",
-    "endsinger": "https://saltedxiv.com/encounters/endsinger-ex",
+    ("hydaelyn","mommy"): "https://saltedxiv.com/encounters/hydaelyn-ex",
+    ("endsinger","meteion","aria"): "https://saltedxiv.com/encounters/endsinger-ex",
     "p1s": "https://saltedxiv.com/encounters/p1s",
     "p2s": "https://saltedxiv.com/encounters/p2s",
     "p3s": "https://saltedxiv.com/encounters/p3s",
