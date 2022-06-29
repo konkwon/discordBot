@@ -4,7 +4,7 @@ encounters = {
     "innocence":"https://saltedxiv.com/encounters/innocence",
     "hades":"https://saltedxiv.com/encounters/hades",
     "memoria":"https://saltedxiv.com/encounters/mem-ex",
-    ("wolex","sos","sosex"):"https://saltedxiv.com/encounters/sos-ex",
+    "sosex":"https://saltedxiv.com/encounters/sos-ex",
     "ruby":"https://saltedxiv.com/encounters/ruby-ex",
     "emerald":"https://saltedxiv.com/encounters/castrum-ex",
     "diamond":"https://saltedxiv.com/encounters/diamond-ex",
