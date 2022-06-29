@@ -23,7 +23,7 @@ encounters = {
 
     # Endwalker
     "zodiark": "https://saltedxiv.com/encounters/zodiark-ex",
-    ("hydaelyn","mommy"): "https://saltedxiv.com/encounters/hydaelyn-ex",
+    [("hydaelyn","mommy")]: "https://saltedxiv.com/encounters/hydaelyn-ex",
     ("endsinger","meteion","aria"): "https://saltedxiv.com/encounters/endsinger-ex",
     "p1s": "https://saltedxiv.com/encounters/p1s",
     "p2s": "https://saltedxiv.com/encounters/p2s",
