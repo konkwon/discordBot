@@ -38,7 +38,7 @@ async def r(ctx, *arg):
 @client.command()
 async def c(ctx, *arg):
     if not arg:
-        await ctx.send("Type character name and server name after !char.\ne.g. !char Ravi Lavi Leviathan")
+        await ctx.send("Type character name and server name after !c.\ne.g. !c Ravi Lavi Leviathan")
     elif len(arg) == 3:
         try:
             api = pyxivapi.XIVAPIClient(api_key=XIV_TOKEN)
